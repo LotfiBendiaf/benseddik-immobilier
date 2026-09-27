@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Logo from "./Logo";
 import Hero from "./Hero";
+import About from "./About";
 
 const homes = [
   ["/immo1.jpg", "Villa contemporaine avec piscine", "Canastel, Oran", "82 000 000 DA"],
@@ -20,7 +21,7 @@ function Heading({mark,title,text}:{mark:string;title:string;text:string}){retur
 
 export default function Home(){return <main>
   <Hero/>
-  <section className="section warm" id="about"><Heading mark="À PROPOS" title="Qui sommes-nous ?" text="Une expertise locale, une écoute attentive et un accompagnement pensé autour de votre projet."/><div className="about"><div className="photo"><Image src="/pyramide-img.jpg" alt="L'équipe de Benseddik Immobilier" fill className="cover"/><aside>“ <span>Votre projet mérite un accompagnement à sa mesure.</span></aside></div><div className="copy"><small>L&apos;IMMOBILIER, EN TOUTE CONFIANCE</small><h3>Bien plus qu&apos;une agence, votre partenaire immobilier.</h3><p>Benseddik Immobilier vous accompagne dans tous vos projets. Achat, vente ou location : notre équipe d&apos;experts transforme chaque étape en une expérience simple, claire et sereine.</p><ul><li>✓ Agence immobilière agréée par l&apos;État</li><li>✓ Accompagnement personnalisé à chaque étape</li><li>✓ Connaissance approfondie du marché local</li></ul><footer><span>Des relations durables fondées sur la transparence et les résultats.</span><strong>★★★★★ <i>4,7 / 5</i></strong></footer></div></div></section>
+  <About/>
   <section className="section" id="listings"><Heading mark="BIENS" title="Biens immobiliers" text="Découvrez les biens sélectionnés avec soin par notre équipe."/><div className="homes">{homes.map((h,i)=><article key={h[1]}><div className="homeImg"><Image src={h[0]} alt={h[1]} fill className="cover"/><span>{i===1?"À louer":"À vendre"}</span><button>♡</button></div><div className="homeText"><small>{i===0?"Villa":"Appartement"}</small><h3>{h[1]}</h3><p>⌖ {h[2]}</p><footer><strong>{h[3]}</strong><span>3 ch. · 160 m²</span></footer></div></article>)}</div><div className="center"><a className="btn outline" href="#premium">Voir tous les biens ↗</a></div></section>
   <section className="section" id="expertise"><Heading mark="SERVICES" title="Notre expertise" text="Des solutions immobilières complètes, portées par une équipe engagée à chaque étape de votre projet."/><div className="services">{services.map((s,i)=><article key={s[1]}><span>{s[0]}</span><small>0{i+1}</small><h3>{s[1]}</h3><p>{s[2]}</p></article>)}</div><div className="serviceCta"><strong>Un besoin spécifique ? Nous construisons un accompagnement sur mesure.</strong><a href="#contact">Parler à un conseiller →</a></div></section>
   <section className="impact"><Heading mark="IMPACT" title="Notre portée" text="Des résultats concrets portés par notre réseau, notre connaissance du marché et la confiance de nos clients."/><div className="stats"><div><strong>500+</strong><span>Transactions</span></div><div><strong>10</strong><span>Agents actifs</span></div><div><strong>450+</strong><span>Biens actifs</span></div></div></section>
