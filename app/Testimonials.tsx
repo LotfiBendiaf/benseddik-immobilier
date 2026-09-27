@@ -1,9 +1,9 @@
 import styles from "./Testimonials.module.css";
 
 const testimonials = [
-  { quote: "L’agence m’a accompagnée et guidée tout au long de mes recherches. Une présence rassurante et une efficacité remarquable.", name: "Mokrane Dalila", project: "Recherche immobilière", index: "01" },
-  { quote: "Un accompagnement complet du début à la fin, par une équipe jeune, motivée et réellement attentive à notre projet.", name: "Rania Iness Taa", project: "Acquisition", index: "02" },
-  { quote: "Une équipe sérieuse, rapide et professionnelle. Chaque étape a été expliquée clairement et menée avec beaucoup de soin.", name: "Razan Rahou", project: "Vente immobilière", index: "03" },
+  { quote: "L’agence m’a accompagnée et guidée tout au long de mes recherches. Une présence rassurante et une efficacité remarquable.", name: "Mokrane Dalila", project: "Recherche immobilière", initials: "MD" },
+  { quote: "Un accompagnement complet du début à la fin, par une équipe jeune, motivée et réellement attentive à notre projet.", name: "Rania Iness Taa", project: "Acquisition", initials: "RT" },
+  { quote: "Une équipe sérieuse, rapide et professionnelle. Chaque étape a été expliquée clairement et menée avec beaucoup de soin.", name: "Razan Rahou", project: "Vente immobilière", initials: "RR" },
 ];
 
 export default function Testimonials() {
@@ -18,13 +18,12 @@ export default function Testimonials() {
 
       <div className={styles.grid}>
         {testimonials.map((testimonial) => (
-          <article key={testimonial.index}>
-            <header><span>{testimonial.index}</span><span aria-label="5 étoiles">★★★★★</span></header>
-            <span className={styles.quote} aria-hidden="true">“</span>
-            <blockquote>{testimonial.quote}</blockquote>
+          <article key={testimonial.name}>
+            <header><span aria-label="5 étoiles">★★★★★</span><small>5.0</small></header>
+            <blockquote>“{testimonial.quote}”</blockquote>
             <footer>
+              <span className={styles.avatar} aria-hidden="true">{testimonial.initials}</span>
               <div><strong>{testimonial.name}</strong><span>{testimonial.project}</span></div>
-              <small>CLIENT · BENSEDDIK</small>
             </footer>
           </article>
         ))}
