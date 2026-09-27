@@ -1,69 +1,32 @@
 import Image from "next/image";
+import Logo from "./Logo";
+import Hero from "./Hero";
 
-export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
-}
+const homes = [
+  ["/immo1.jpg", "Villa contemporaine avec piscine", "Canastel, Oran", "82 000 000 DA"],
+  ["/immo2.jpg", "Appartement lumineux avec terrasse", "Akid Lotfi, Oran", "120 000 DA / mois"],
+  ["/immo3.jpg", "Duplex premium vue dégagée", "Bir El Djir, Oran", "39 500 000 DA"],
+  ["/immo4.jpg", "Résidence de standing", "Centre-ville, Oran", "28 000 000 DA"],
+];
+const services = [
+  ["⌂", "Vente Immobilière", "Une estimation précise et une stratégie efficace pour vendre votre bien."],
+  ["⌑", "Location", "Trouvez le locataire idéal ou le bien parfait grâce à notre service personnalisé."],
+  ["§", "Conseil Juridique", "Des conseils experts pour sécuriser vos transactions immobilières."],
+  ["↗", "Estimation Gratuite", "Une estimation fondée sur notre connaissance approfondie du marché."],
+  ["◎", "Accompagnement", "Un agent dédié, de la première visite jusqu'à la signature finale."],
+  ["◇", "Garantie Confiance", "Des transactions transparentes avec un suivi rigoureux à chaque étape."],
+];
+function Heading({mark,title,text}:{mark:string;title:string;text:string}){return <header className="heading"><b>{mark}</b><h2>{title}</h2><p>{text}</p></header>}
+
+export default function Home(){return <main>
+  <Hero/>
+  <section className="section warm" id="about"><Heading mark="À PROPOS" title="Qui sommes-nous ?" text="Une expertise locale, une écoute attentive et un accompagnement pensé autour de votre projet."/><div className="about"><div className="photo"><Image src="/pyramide-img.jpg" alt="L'équipe de Benseddik Immobilier" fill className="cover"/><aside>“ <span>Votre projet mérite un accompagnement à sa mesure.</span></aside></div><div className="copy"><small>L&apos;IMMOBILIER, EN TOUTE CONFIANCE</small><h3>Bien plus qu&apos;une agence, votre partenaire immobilier.</h3><p>Benseddik Immobilier vous accompagne dans tous vos projets. Achat, vente ou location : notre équipe d&apos;experts transforme chaque étape en une expérience simple, claire et sereine.</p><ul><li>✓ Agence immobilière agréée par l&apos;État</li><li>✓ Accompagnement personnalisé à chaque étape</li><li>✓ Connaissance approfondie du marché local</li></ul><footer><span>Des relations durables fondées sur la transparence et les résultats.</span><strong>★★★★★ <i>4,7 / 5</i></strong></footer></div></div></section>
+  <section className="section" id="listings"><Heading mark="BIENS" title="Biens immobiliers" text="Découvrez les biens sélectionnés avec soin par notre équipe."/><div className="homes">{homes.map((h,i)=><article key={h[1]}><div className="homeImg"><Image src={h[0]} alt={h[1]} fill className="cover"/><span>{i===1?"À louer":"À vendre"}</span><button>♡</button></div><div className="homeText"><small>{i===0?"Villa":"Appartement"}</small><h3>{h[1]}</h3><p>⌖ {h[2]}</p><footer><strong>{h[3]}</strong><span>3 ch. · 160 m²</span></footer></div></article>)}</div><div className="center"><a className="btn outline" href="#premium">Voir tous les biens ↗</a></div></section>
+  <section className="section" id="expertise"><Heading mark="SERVICES" title="Notre expertise" text="Des solutions immobilières complètes, portées par une équipe engagée à chaque étape de votre projet."/><div className="services">{services.map((s,i)=><article key={s[1]}><span>{s[0]}</span><small>0{i+1}</small><h3>{s[1]}</h3><p>{s[2]}</p></article>)}</div><div className="serviceCta"><strong>Un besoin spécifique ? Nous construisons un accompagnement sur mesure.</strong><a href="#contact">Parler à un conseiller →</a></div></section>
+  <section className="impact"><Heading mark="IMPACT" title="Notre portée" text="Des résultats concrets portés par notre réseau, notre connaissance du marché et la confiance de nos clients."/><div className="stats"><div><strong>500+</strong><span>Transactions</span></div><div><strong>10</strong><span>Agents actifs</span></div><div><strong>450+</strong><span>Biens actifs</span></div></div></section>
+  <section className="section" id="premium"><Heading mark="PREMIUM" title="Biens d'exception" text="Une sélection confidentielle de propriétés choisies pour leur emplacement, leur qualité et leur caractère."/><div className="premium">{[5,6,7].map((n,i)=><article key={n}><Image src={`/immo${n}.jpg`} alt="Propriété d'exception" fill className="cover"/><div><small>SÉLECTION PRIVÉE 0{i+1}</small><h3>{["Villa d'architecte","Appartement d'exception","Maison familiale"][i]}</h3><span>Découvrir le bien →</span></div></article>)}</div></section>
+  <section className="section reviews"><Heading mark="AVIS" title="Ils nous font confiance" text="Des expériences partagées par celles et ceux que nous avons accompagnés dans leur projet immobilier."/><div className="reviewsGrid">{[["Mokrane Dalila","L'agence m'a accompagnée et guidée tout au long de mes recherches. Professionnalisme et efficacité remarquables."],["Rania Iness Taa","Un accompagnement complet du début à la fin, par une équipe jeune, motivée et déterminée."],["Razan Rahou","Excellente agence ! Une équipe sérieuse, rapide et véritablement professionnelle."]].map(r=><article key={r[0]}><strong>★★★★★</strong><b>“</b><p>{r[1]}</p><footer><span>{r[0]}</span><small>Il y a quelques mois</small></footer></article>)}</div></section>
+  <section className="section"><Heading mark="ADRESSE" title="Retrouvez-nous" text="Passez nous voir à Oran pour échanger directement avec notre équipe autour de votre projet."/><div className="map"><div><span>●<i>Benseddik<br/>Immobilier</i></span></div><footer><strong>⌖ Benseddik Immobilier <small>Oran, Algérie</small></strong><a href="#contact">Obtenir l&apos;itinéraire →</a></footer></div></section>
+  <section className="section warm" id="contact"><Heading mark="CONTACT" title="Parlons de votre projet" text="Une question, un bien à vendre ou un nouveau projet ? Notre équipe vous répond avec attention."/><div className="contact"><aside><small>RESTONS EN CONTACT</small><h3>Un échange simple pour commencer votre projet sereinement.</h3><p>Un conseiller prendra le temps de comprendre votre besoin et de vous orienter.</p><ul><li>◫ <span>Téléphone<strong>À compléter</strong></span></li><li>✉ <span>Email<strong>À compléter</strong></span></li><li>⌖ <span>Agence<strong>Oran, Algérie</strong></span></li></ul></aside><form><h3>Envoyez-nous un message</h3><p>Remplissez le formulaire et nous reviendrons vers vous.</p><div><label>Nom<input placeholder="Votre nom complet"/></label><label>Email<input type="email" placeholder="email@exemple.com"/></label></div><label>Téléphone<input placeholder="+213..."/></label><label>Message<textarea placeholder="Décrivez votre besoin..."/></label><button className="btn dark">Envoyer le message ↗</button></form></div></section>
+  <footer className="footer"><Logo size="lg"/><p>Votre projet immobilier, accompagné avec exigence.</p><small>© 2026 Benseddik Immobilier</small></footer>
+  </main>}
