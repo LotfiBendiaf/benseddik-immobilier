@@ -19,6 +19,7 @@ export default function Navigation() {
   const triggers = useRef<(HTMLButtonElement | null)[]>([]);
   const mobileTrigger = useRef<HTMLButtonElement>(null);
   const close = () => { setActive(null); setMobile(false); };
+  const canHover = () => window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
   useEffect(() => {
     const outside = (event: PointerEvent) => { if (!root.current?.contains(event.target as Node)) { setActive(null); setMobile(false); } };
@@ -38,8 +39,13 @@ export default function Navigation() {
     <a href="#home" aria-label="Benseddik Immobilier — accueil" className={styles.brand} onClick={close}><Logo /></a>
     <button ref={mobileTrigger} type="button" className={styles.mobileToggle} aria-expanded={mobile} aria-controls="primary-navigation" onClick={() => { setMobile(!mobile); setActive(null); }}>{mobile ? "Fermer −" : "Menu +"}</button>
     <nav id="primary-navigation" className={`${styles.navigation} ${mobile ? styles.mobileOpen : ""}`} aria-label="Navigation principale">
-      {categories.map((category, index) => <div key={category.name} className={styles.item}>
-        <button ref={(node) => { triggers.current[index] = node; }} type="button" className={styles.trigger} aria-expanded={active === index} aria-controls={`navigation-panel-${index}`} onClick={() => setActive(active === index ? null : index)} onKeyDown={(event) => { if (event.key === "ArrowDown") { event.preventDefault(); setActive(index); requestAnimationFrame(() => root.current?.querySelector<HTMLAnchorElement>(`#navigation-panel-${index} a`)?.focus()); } }}>{category.name}<svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3" /></svg></button>
+      {categories.map((category, index) => <div
+        key={category.name}
+        className={styles.item}
+        onMouseEnter={() => { if (canHover()) setActive(index); }}
+        onMouseLeave={() => { if (canHover()) setActive((current) => current === index ? null : current); }}
+      >
+        <button ref={(node) => { triggers.current[index] = node; }} type="button" className={styles.trigger} aria-expanded={active === index} aria-controls={`navigation-panel-${index}`} onClick={() => setActive(canHover() ? index : active === index ? null : index)} onKeyDown={(event) => { if (event.key === "ArrowDown") { event.preventDefault(); setActive(index); requestAnimationFrame(() => root.current?.querySelector<HTMLAnchorElement>(`#navigation-panel-${index} a`)?.focus()); } }}>{category.name}<svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3" /></svg></button>
         {active === index && <div id={`navigation-panel-${index}`} className={styles.panel}>
           <a href={category.href} className={styles.feature} onClick={close}>
             <Image src={category.image} alt="" fill sizes="(max-width: 800px) 90vw, 310px" className={styles.photo} />
