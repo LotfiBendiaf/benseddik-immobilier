@@ -1,4 +1,5 @@
 import styles from "./Contact.module.css";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function Contact() {
   return (
@@ -30,7 +31,18 @@ export default function Contact() {
             <label>Téléphone *<input name="phone" type="tel" autoComplete="tel" placeholder="+213 ..." required /></label>
           </div>
           <label>Adresse email *<input name="email" type="email" autoComplete="email" placeholder="email@exemple.com" required /></label>
-          <label>Nature du projet<select name="project" defaultValue=""><option value="" disabled>Sélectionnez votre projet</option><option>Achat</option><option>Vente</option><option>Location</option><option>Estimation</option><option>Autre demande</option></select></label>
+          <label>Nature du projet
+            <Select name="project">
+              <SelectTrigger className={styles.selectTrigger}><SelectValue placeholder="Sélectionnez votre projet" /></SelectTrigger>
+              <SelectContent className={styles.selectContent} align="start">
+                <SelectItem className={styles.selectItem} value="achat">Achat</SelectItem>
+                <SelectItem className={styles.selectItem} value="vente">Vente</SelectItem>
+                <SelectItem className={styles.selectItem} value="location">Location</SelectItem>
+                <SelectItem className={styles.selectItem} value="estimation">Estimation</SelectItem>
+                <SelectItem className={styles.selectItem} value="autre">Autre demande</SelectItem>
+              </SelectContent>
+            </Select>
+          </label>
           <label>Parlez-nous de votre projet *<textarea name="message" placeholder="Type de bien, quartier, budget, délai…" required /></label>
           <div className={styles.submit}><p>En envoyant ce formulaire, vous acceptez d’être recontacté par notre équipe.</p><button type="submit">Envoyer ma demande <span aria-hidden="true">→</span></button></div>
         </form>
