@@ -3,21 +3,14 @@ import Logo from "./Logo";
 import Hero from "./Hero";
 import About from "./About";
 import Listings from "./Listings";
-const services = [
-  ["⌂", "Vente Immobilière", "Une estimation précise et une stratégie efficace pour vendre votre bien."],
-  ["⌑", "Location", "Trouvez le locataire idéal ou le bien parfait grâce à notre service personnalisé."],
-  ["§", "Conseil Juridique", "Des conseils experts pour sécuriser vos transactions immobilières."],
-  ["↗", "Estimation Gratuite", "Une estimation fondée sur notre connaissance approfondie du marché."],
-  ["◎", "Accompagnement", "Un agent dédié, de la première visite jusqu'à la signature finale."],
-  ["◇", "Garantie Confiance", "Des transactions transparentes avec un suivi rigoureux à chaque étape."],
-];
+import Services from "./Services";
 function Heading({mark,title,text}:{mark:string;title:string;text:string}){return <header className="heading"><b>{mark}</b><h2>{title}</h2><p>{text}</p></header>}
 
 export default function Home(){return <main>
   <Hero/>
   <About/>
   <Listings/>
-  <section className="section" id="expertise"><Heading mark="SERVICES" title="Notre expertise" text="Des solutions immobilières complètes, portées par une équipe engagée à chaque étape de votre projet."/><div className="services">{services.map((s,i)=><article key={s[1]}><span>{s[0]}</span><small>0{i+1}</small><h3>{s[1]}</h3><p>{s[2]}</p></article>)}</div><div className="serviceCta"><strong>Un besoin spécifique ? Nous construisons un accompagnement sur mesure.</strong><a href="#contact">Parler à un conseiller →</a></div></section>
+  <Services/>
   <section className="impact"><Heading mark="IMPACT" title="Notre portée" text="Des résultats concrets portés par notre réseau, notre connaissance du marché et la confiance de nos clients."/><div className="stats"><div><strong>500+</strong><span>Transactions</span></div><div><strong>10</strong><span>Agents actifs</span></div><div><strong>450+</strong><span>Biens actifs</span></div></div></section>
   <section className="section" id="premium"><Heading mark="PREMIUM" title="Biens d'exception" text="Une sélection confidentielle de propriétés choisies pour leur emplacement, leur qualité et leur caractère."/><div className="premium">{[5,6,7].map((n,i)=><article key={n}><Image src={`/immo${n}.jpg`} alt="Propriété d'exception" fill className="cover"/><div><small>SÉLECTION PRIVÉE 0{i+1}</small><h3>{["Villa d'architecte","Appartement d'exception","Maison familiale"][i]}</h3><span>Découvrir le bien →</span></div></article>)}</div></section>
   <section className="section reviews"><Heading mark="AVIS" title="Ils nous font confiance" text="Des expériences partagées par celles et ceux que nous avons accompagnés dans leur projet immobilier."/><div className="reviewsGrid">{[["Mokrane Dalila","L'agence m'a accompagnée et guidée tout au long de mes recherches. Professionnalisme et efficacité remarquables."],["Rania Iness Taa","Un accompagnement complet du début à la fin, par une équipe jeune, motivée et déterminée."],["Razan Rahou","Excellente agence ! Une équipe sérieuse, rapide et véritablement professionnelle."]].map(r=><article key={r[0]}><strong>★★★★★</strong><b>“</b><p>{r[1]}</p><footer><span>{r[0]}</span><small>Il y a quelques mois</small></footer></article>)}</div></section>
