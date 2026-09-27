@@ -1,4 +1,3 @@
-import Logo from "./Logo";
 import Hero from "./Hero";
 import About from "./About";
 import Listings from "./Listings";
@@ -8,7 +7,7 @@ import Premium from "./Premium";
 import Testimonials from "./Testimonials";
 import Location from "./Location";
 import Contact from "./Contact";
-function Heading({mark,title,text}:{mark:string;title:string;text:string}){return <header className="heading"><b>{mark}</b><h2>{title}</h2><p>{text}</p></header>}
+import Footer from "./Footer";
 
 export default function Home(){return <main>
   <Hero/>
@@ -20,5 +19,5 @@ export default function Home(){return <main>
   <Testimonials/>
   <Location/>
   <Contact/>
-  <footer className="footer"><Logo size="lg"/><p>Votre projet immobilier, accompagné avec exigence.</p><small>© 2026 Benseddik Immobilier</small></footer>
+  <Footer/>
   </main>}
