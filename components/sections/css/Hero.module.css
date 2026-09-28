@@ -19,3 +19,4 @@
 @media(prefers-reduced-motion:reduce){.slide{transition:none}.title{animation:none}}
 
 .navIcon{width:15px;height:15px;flex:none;color:#777b62;opacity:.8}.navLabel{display:inline-flex;align-items:center;gap:10px}.navigation a:hover .navIcon,.navigation a:focus-visible .navIcon{opacity:1}
+.discover svg,.signature a svg{width:17px;height:17px;stroke-width:1.5}.approvalIcon svg{width:17px;height:17px}.pagination button{height:auto;border-radius:0}.arrows button svg{width:17px;height:17px}

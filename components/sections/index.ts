@@ -1,0 +1,11 @@
+export { default as About } from "./About";
+export { default as Contact } from "./Contact";
+export { default as Footer } from "./Footer";
+export { default as Hero } from "./Hero";
+export { default as Impact } from "./Impact";
+export { default as Listings } from "./Listings";
+export { default as Location } from "./Location";
+export { default as Premium } from "./Premium";
+export { default as ScrollReveal } from "./ScrollReveal";
+export { default as Services } from "./Services";
+export { default as Testimonials } from "./Testimonials";

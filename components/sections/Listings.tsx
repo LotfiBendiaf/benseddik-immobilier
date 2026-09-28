@@ -1,5 +1,7 @@
 import Image from "next/image";
-import styles from "./Listings.module.css";
+import { ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import styles from "./css/Listings.module.css";
 
 const properties = [
   {
@@ -41,7 +43,7 @@ const properties = [
 ];
 
 function Arrow() {
-  return <span aria-hidden="true">↗</span>;
+  return <ArrowUpRight aria-hidden="true" strokeWidth={1.5} />;
 }
 
 export default function Listings() {
@@ -55,7 +57,7 @@ export default function Listings() {
         <h2 id="listings-title">Des lieux choisis,<br /><em>pour vous.</em></h2>
         <div className={styles.introCopy}>
           <p>Une sélection resserrée de biens retenus pour leur emplacement, leur potentiel et leur singularité.</p>
-          <a href="#premium">Voir toute la collection <Arrow /></a>
+          <Button render={<a href="#premium" />} variant="ghost">Voir toute la collection <Arrow /></Button>
         </div>
       </header>
 
@@ -96,7 +98,7 @@ export default function Listings() {
 
       <footer className={styles.sectionFooter}>
         <p><span>+</span> De nouvelles adresses rejoignent régulièrement notre sélection.</p>
-        <a href="#contact">Confiez-nous votre recherche <Arrow /></a>
+        <Button render={<a href="#contact" />} variant="ghost">Confiez-nous votre recherche <Arrow /></Button>
       </footer>
     </section>
   );

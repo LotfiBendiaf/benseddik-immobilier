@@ -1,5 +1,7 @@
 import Image from "next/image";
-import styles from "./Premium.module.css";
+import { ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import styles from "./css/Premium.module.css";
 
 const properties = [
   {
@@ -26,7 +28,7 @@ const properties = [
 ];
 
 function Arrow() {
-  return <span aria-hidden="true">↗</span>;
+  return <ArrowUpRight aria-hidden="true" strokeWidth={1.5} />;
 }
 
 export default function Premium() {
@@ -40,7 +42,7 @@ export default function Premium() {
         <h2 id="premium-title">Le rare,<br /><em>bien choisi.</em></h2>
         <div className={styles.introCopy}>
           <p>Des propriétés remarquables, retenues pour leur architecture, leur adresse et la qualité de leurs espaces.</p>
-          <a href="#contact">Accéder à la sélection privée <Arrow /></a>
+          <Button render={<a href="#contact" />} variant="ghost">Accéder à la sélection privée <Arrow /></Button>
         </div>
       </header>
 
@@ -79,7 +81,7 @@ export default function Premium() {
 
       <footer className={styles.sectionFooter}>
         <p>Certaines adresses ne sont jamais publiées.</p>
-        <a href="#contact">Nous confier votre recherche <Arrow /></a>
+        <Button render={<a href="#contact" />} variant="ghost">Nous confier votre recherche <Arrow /></Button>
       </footer>
     </section>
   );

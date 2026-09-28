@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { ArrowDown, ArrowLeft, ArrowRight, BadgeCheck, Pause, Play } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Navigation from "./Navigation";
-import styles from "./Hero.module.css";
+import styles from "./css/Hero.module.css";
 
 const slides = [
   { image: "/pyramide-img4.jpg", alt: "Villa contemporaine aux lignes épurées avec piscine", title: "L’art de vivre,", accent: "à la bonne adresse.", caption: "Lignes contemporaines", category: "Architecture & caractère" },
@@ -36,23 +38,23 @@ export default function Hero() {
           <p className={styles.eyebrow}><span /> BENSEDDIK IMMOBILIER · ORAN</p>
           <div aria-live={playing ? "off" : "polite"} aria-atomic="true"><h1 key={active} className={styles.title}>{slides[active].title}<br /><em>{slides[active].accent}</em></h1></div>
           <p className={styles.description}>Des lieux de caractère. Une expertise locale.<br />Un accompagnement à la hauteur de vos exigences.</p>
-          <a href="#listings" className={styles.discover}>Explorer nos biens <span aria-hidden="true">↗</span></a>
+          <Button render={<a href="#listings" />} variant="brand-light" size="xl" className={styles.discover}>Explorer nos biens <ArrowRight data-icon="inline-end" /></Button>
         </div>
         <div className={styles.approvalBadge}>
-          <span className={styles.approvalIcon} aria-hidden="true">✓</span>
+          <span className={styles.approvalIcon} aria-hidden="true"><BadgeCheck size={17} strokeWidth={1.6} /></span>
           <span>Agence immobilière</span>
           <strong>Agréée par l’État</strong>
         </div>
         <div className={styles.bottom}>
           <div className={styles.caption}><span>{slides[active].category}</span><p>{slides[active].caption}</p></div>
           <div className={styles.controls}>
-            <button className={styles.pause} onClick={() => setPlaying(!playing)} aria-label={playing ? "Suspendre le défilement" : "Activer le défilement"}>{playing ? "Ⅱ" : "▷"}</button>
-            <div className={styles.pagination}>{slides.map((slide, index) => <button key={slide.title} aria-label={`Afficher la diapositive ${index + 1}`} aria-current={active === index ? "true" : undefined} onClick={() => select(index)}><span>0{index + 1}</span><i /></button>)}</div>
-            <div className={styles.arrows}><button aria-label="Diapositive précédente" onClick={() => select(active - 1)}>←</button><button aria-label="Diapositive suivante" onClick={() => select(active + 1)}>→</button></div>
+            <Button variant="ghost" size="icon" className={styles.pause} onClick={() => setPlaying(!playing)} aria-label={playing ? "Suspendre le défilement" : "Activer le défilement"}>{playing ? <Pause /> : <Play />}</Button>
+            <div className={styles.pagination}>{slides.map((slide, index) => <Button variant="ghost" key={slide.title} aria-label={`Afficher la diapositive ${index + 1}`} aria-current={active === index ? "true" : undefined} onClick={() => select(index)}><span>0{index + 1}</span><i /></Button>)}</div>
+            <div className={styles.arrows}><Button variant="outline" size="icon-lg" aria-label="Diapositive précédente" onClick={() => select(active - 1)}><ArrowLeft /></Button><Button variant="outline" size="icon-lg" aria-label="Diapositive suivante" onClick={() => select(active + 1)}><ArrowRight /></Button></div>
           </div>
         </div>
       </div>
-      <div className={styles.signature}><span>UNE ADRESSE. UNE HISTOIRE. LA VÔTRE.</span><p>L’immobilier pensé <em>autrement.</em></p><a href="#about">Découvrir l’agence <span aria-hidden="true">↓</span></a></div>
+      <div className={styles.signature}><span>UNE ADRESSE. UNE HISTOIRE. LA VÔTRE.</span><p>L’immobilier pensé <em>autrement.</em></p><Button render={<a href="#about" />} variant="ghost">Découvrir l’agence <ArrowDown data-icon="inline-end" /></Button></div>
     </section>
   );
 }

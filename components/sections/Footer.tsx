@@ -1,5 +1,7 @@
 import Logo from "./Logo";
-import styles from "./Footer.module.css";
+import { ArrowUp, ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import styles from "./css/Footer.module.css";
 
 const navigation = [
   ["À propos", "#about"],
@@ -18,12 +20,12 @@ export default function Footer() {
         </div>
         <nav aria-label="Navigation de pied de page">
           <span>EXPLORER</span>
-          {navigation.map(([label, href]) => <a href={href} key={href}>{label}<i aria-hidden="true">↗</i></a>)}
+          {navigation.map(([label, href]) => <a href={href} key={href}>{label}<ArrowUpRight aria-hidden="true" /></a>)}
         </nav>
         <div className={styles.contact}>
           <span>NOUS CONTACTER</span>
           <p>Oran, Algérie</p>
-          <a href="#contact">Prendre rendez-vous <i aria-hidden="true">↗</i></a>
+          <Button render={<a href="#contact" />} variant="ghost">Prendre rendez-vous <ArrowUpRight data-icon="inline-end" /></Button>
         </div>
       </div>
 
@@ -32,7 +34,7 @@ export default function Footer() {
       <div className={styles.bottom}>
         <p>© 2026 Benseddik Immobilier</p>
         <p>Agence immobilière · Oran</p>
-        <a href="#">Retour en haut <span aria-hidden="true">↑</span></a>
+        <Button render={<a href="#home" />} variant="ghost">Retour en haut <ArrowUp data-icon="inline-end" /></Button>
       </div>
     </footer>
   );

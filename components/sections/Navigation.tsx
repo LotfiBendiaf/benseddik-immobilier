@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Logo from "./Logo";
-import styles from "./Navigation.module.css";
+import styles from "./css/Navigation.module.css";
 
 const categories = [
   { name: "Acheter", image: "/immo1.jpg", href: "#listings", description: "Des adresses choisies pour commencer votre prochain chapitre.", heading: "Un lieu, une nouvelle vie.", label: "Votre acquisition", action: "Découvrir nos biens", links: [["Nos biens à vendre", "#listings"], ["Biens d’exception", "#premium"], ["Être accompagné", "#contact"]] },
@@ -53,7 +55,7 @@ export default function Navigation() {
     }
   }}>
     <a href="#home" aria-label="Benseddik Immobilier — accueil" className={styles.brand} onClick={close}><Logo /></a>
-    <button ref={mobileTrigger} type="button" className={styles.mobileToggle} aria-expanded={mobile} aria-controls="primary-navigation" onClick={() => { setMobile(!mobile); setActive(null); }}>{mobile ? "Fermer −" : "Menu +"}</button>
+    <Button ref={mobileTrigger} type="button" variant="ghost" className={styles.mobileToggle} aria-expanded={mobile} aria-controls="primary-navigation" onClick={() => { setMobile(!mobile); setActive(null); }}>{mobile ? <>Fermer <X /></> : <>Menu <Menu /></>}</Button>
     <nav id="primary-navigation" className={`${styles.navigation} ${mobile ? styles.mobileOpen : ""}`} aria-label="Navigation principale">
       {categories.map((category, index) => <div
         key={category.name}
@@ -61,18 +63,18 @@ export default function Navigation() {
         onMouseEnter={() => openOnHover(index)}
         onMouseLeave={() => closeAfterHover(index)}
       >
-        <button ref={(node) => { triggers.current[index] = node; }} type="button" className={styles.trigger} aria-expanded={active === index} aria-controls={`navigation-panel-${index}`} onClick={() => setActive(canHover() ? index : active === index ? null : index)} onKeyDown={(event) => { if (event.key === "ArrowDown") { event.preventDefault(); setActive(index); requestAnimationFrame(() => root.current?.querySelector<HTMLAnchorElement>(`#navigation-panel-${index} a`)?.focus()); } }}>{category.name}<svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3" /></svg></button>
+        <Button ref={(node) => { triggers.current[index] = node; }} type="button" variant="ghost" className={styles.trigger} aria-expanded={active === index} aria-controls={`navigation-panel-${index}`} onClick={() => setActive(canHover() ? index : active === index ? null : index)} onKeyDown={(event) => { if (event.key === "ArrowDown") { event.preventDefault(); setActive(index); requestAnimationFrame(() => root.current?.querySelector<HTMLAnchorElement>(`#navigation-panel-${index} a`)?.focus()); } }}>{category.name}<ChevronDown aria-hidden="true" /></Button>
         {active === index && <div id={`navigation-panel-${index}`} className={styles.panel}>
           <a href={category.href} className={styles.feature} onClick={close}>
             <Image src={category.image} alt="" fill sizes="(max-width: 800px) 90vw, 310px" className={styles.photo} />
             <span className={styles.shade} />
-            <span className={styles.featureContent}><span className={styles.featureTop}>{category.label}<i>0{index + 1}</i></span><span><span className={styles.featureTitle}>{category.name}</span><span className={styles.description}>{category.description}</span><span className={styles.featureAction}>{category.action}<span aria-hidden="true">↗</span></span></span></span>
+            <span className={styles.featureContent}><span className={styles.featureTop}>{category.label}<i>0{index + 1}</i></span><span><span className={styles.featureTitle}>{category.name}</span><span className={styles.description}>{category.description}</span><span className={styles.featureAction}>{category.action}<ArrowUpRight aria-hidden="true" /></span></span></span>
           </a>
-          <div className={styles.details}><p className={styles.eyebrow}>Explorer {category.label.toLowerCase()}</p><h2>{category.heading}</h2><ol>{category.links.map(([label, href], linkIndex) => <li key={label}><a href={href} onClick={close}><i>0{linkIndex + 1}</i><span>{label}</span><span className={styles.arrow} aria-hidden="true">↗</span></a></li>)}</ol><p className={styles.note}>Des lieux de caractère, une équipe à votre écoute.</p></div>
+          <div className={styles.details}><p className={styles.eyebrow}>Explorer {category.label.toLowerCase()}</p><h2>{category.heading}</h2><ol>{category.links.map(([label, href], linkIndex) => <li key={label}><a href={href} onClick={close}><i>0{linkIndex + 1}</i><span>{label}</span><ArrowUpRight className={styles.arrow} aria-hidden="true" /></a></li>)}</ol><p className={styles.note}>Des lieux de caractère, une équipe à votre écoute.</p></div>
         </div>}
       </div>)}
-      <a href="#contact" className={styles.mobileContact} onClick={close}>Parlons de votre projet ↗</a>
+      <Button render={<a href="#contact" onClick={close} />} variant="ghost" className={styles.mobileContact}>Parlons de votre projet <ArrowUpRight /></Button>
     </nav>
-    <a className={styles.contact} href="#contact" onClick={close}>Parlons de votre projet <span aria-hidden="true">↗</span></a>
+    <Button render={<a href="#contact" onClick={close} />} variant="ghost" className={styles.contact}>Parlons de votre projet <ArrowUpRight data-icon="inline-end" /></Button>
   </header>;
 }

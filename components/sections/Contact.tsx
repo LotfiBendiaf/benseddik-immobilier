@@ -1,5 +1,7 @@
-import styles from "./Contact.module.css";
+import styles from "./css/Contact.module.css";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Send } from "lucide-react";
 
 export default function Contact() {
   return (
@@ -44,7 +46,7 @@ export default function Contact() {
             </Select>
           </label>
           <label>Parlez-nous de votre projet *<textarea name="message" placeholder="Type de bien, quartier, budget, délai…" required /></label>
-          <div className={styles.submit}><p>En envoyant ce formulaire, vous acceptez d’être recontacté par notre équipe.</p><button type="submit">Envoyer ma demande <span aria-hidden="true">→</span></button></div>
+          <div className={styles.submit}><p>En envoyant ce formulaire, vous acceptez d’être recontacté par notre équipe.</p><Button type="submit" variant="brand" size="xl">Envoyer ma demande <Send data-icon="inline-end" /></Button></div>
         </form>
       </div>
     </section>

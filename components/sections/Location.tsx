@@ -1,4 +1,6 @@
-import styles from "./Location.module.css";
+import styles from "./css/Location.module.css";
+import { ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Location() {
   return (
@@ -24,7 +26,7 @@ export default function Location() {
       <div className={styles.details}>
         <div><span>01 · ADRESSE</span><strong>Oran, Algérie</strong><p>L’adresse précise vous sera communiquée lors de la prise de rendez-vous.</p></div>
         <div><span>02 · HORAIRES</span><strong>Sam — Jeu</strong><p>09:00 — 18:00<br />Vendredi sur rendez-vous</p></div>
-        <a href="#contact"><span>Planifier une visite</span><i aria-hidden="true">↗</i></a>
+        <Button render={<a href="#contact" />} variant="ghost"><span>Planifier une visite</span><ArrowUpRight aria-hidden="true" /></Button>
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./Logo.module.css";
+import styles from "./css/Logo.module.css";
 
 export default function Logo({ size = "sm" }: { size?: "sm" | "lg" }) {
   return (

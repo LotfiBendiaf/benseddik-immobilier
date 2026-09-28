@@ -1,5 +1,7 @@
 import Image from "next/image";
-import styles from "./About.module.css";
+import { ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import styles from "./css/About.module.css";
 
 const principles = [
   ["01", "Écoute", "Comprendre avant de conseiller."],
@@ -37,7 +39,7 @@ export default function About() {
           <h3>Bien plus qu’une agence, votre partenaire immobilier.</h3>
           <p className={styles.body}>Benseddik Immobilier vous accompagne dans chacun de vos projets. Achat, vente ou location : notre équipe transforme un parcours souvent complexe en une expérience claire, attentive et sereine.</p>
           <blockquote>« Votre projet mérite un accompagnement à sa mesure. »</blockquote>
-          <a href="#contact">Rencontrer notre équipe <span aria-hidden="true">↗</span></a>
+          <Button render={<a href="#contact" />} variant="ghost">Rencontrer notre équipe <ArrowUpRight data-icon="inline-end" /></Button>
         </article>
       </div>
 

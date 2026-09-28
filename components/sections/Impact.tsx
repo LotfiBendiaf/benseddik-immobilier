@@ -1,4 +1,6 @@
-import styles from "./Impact.module.css";
+import styles from "./css/Impact.module.css";
+import { ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const figures = [
   { value: "500", suffix: "+", label: "Transactions réalisées", detail: "Des projets menés avec méthode, de la première rencontre jusqu’à la remise des clés." },
@@ -32,7 +34,7 @@ export default function Impact() {
 
       <footer className={styles.footer}>
         <p>Au-delà des chiffres, une même exigence : <em>mériter votre confiance.</em></p>
-        <a href="#contact">Commencer votre projet <span aria-hidden="true">↗</span></a>
+        <Button render={<a href="#contact" />} variant="ghost">Commencer votre projet <ArrowUpRight data-icon="inline-end" /></Button>
       </footer>
     </section>
   );

@@ -1,4 +1,6 @@
-import styles from "./Services.module.css";
+import styles from "./css/Services.module.css";
+import { ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const services = [
   {
@@ -28,7 +30,7 @@ const services = [
 ];
 
 function Arrow() {
-  return <span aria-hidden="true">↗</span>;
+  return <ArrowUpRight aria-hidden="true" strokeWidth={1.5} />;
 }
 
 export default function Services() {
@@ -40,7 +42,7 @@ export default function Services() {
         <h2 id="services-title">Chaque projet,<br /><em>bien accompagné.</em></h2>
         <div className={styles.introCopy}>
           <p>Nous réunissons conseil, connaissance du marché et exigence de service pour rendre chaque étape plus simple.</p>
-          <a href="#contact">Parler de votre projet <Arrow /></a>
+          <Button render={<a href="#contact" />} variant="ghost">Parler de votre projet <Arrow /></Button>
         </div>
       </header>
 
@@ -49,7 +51,7 @@ export default function Services() {
           <article className={styles.item} key={service.number}>
             <header className={styles.itemHeader}>
               <span className={styles.number}>{service.number}</span>
-              <a href="#contact" aria-label={`Découvrir notre service ${service.title}`}><Arrow /></a>
+              <Button render={<a href="#contact" aria-label={`Découvrir notre service ${service.title}`} />} variant="outline" size="icon-lg"><Arrow /></Button>
             </header>
             <div className={styles.title}>
               <p>{service.eyebrow}</p>
@@ -62,7 +64,7 @@ export default function Services() {
 
       <footer className={styles.footer}>
         <p><span>Un projet singulier ?</span> Nous imaginons aussi un accompagnement entièrement sur mesure.</p>
-        <a href="#contact">Échanger avec un conseiller <Arrow /></a>
+        <Button render={<a href="#contact" />} variant="ghost">Échanger avec un conseiller <Arrow /></Button>
       </footer>
     </section>
   );

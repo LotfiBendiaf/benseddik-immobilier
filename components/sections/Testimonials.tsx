@@ -1,4 +1,6 @@
-import styles from "./Testimonials.module.css";
+import styles from "./css/Testimonials.module.css";
+import { ArrowUpRight, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const testimonials = [
   { quote: "L’agence m’a accompagnée et guidée tout au long de mes recherches. Une présence rassurante et une efficacité remarquable.", name: "Mokrane Dalila", project: "Recherche immobilière", initials: "MD" },
@@ -19,7 +21,7 @@ export default function Testimonials() {
       <div className={styles.grid}>
         {testimonials.map((testimonial) => (
           <article key={testimonial.name}>
-            <header><span aria-label="5 étoiles">★★★★★</span><small>5.0</small></header>
+            <header><span aria-label="5 étoiles">{Array.from({ length: 5 }, (_, index) => <Star key={index} size={13} fill="currentColor" strokeWidth={1.5} />)}</span><small>5.0</small></header>
             <blockquote>“{testimonial.quote}”</blockquote>
             <footer>
               <span className={styles.avatar} aria-hidden="true">{testimonial.initials}</span>
@@ -31,7 +33,7 @@ export default function Testimonials() {
 
       <footer className={styles.footer}>
         <p>Votre histoire pourrait être la prochaine.</p>
-        <a href="#contact">Parlons de votre projet <span aria-hidden="true">↗</span></a>
+        <Button render={<a href="#contact" />} variant="ghost">Parlons de votre projet <ArrowUpRight data-icon="inline-end" /></Button>
       </footer>
     </section>
   );
