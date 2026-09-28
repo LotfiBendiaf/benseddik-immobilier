@@ -38,6 +38,11 @@ export default function Hero() {
           <p className={styles.description}>Des lieux de caractère. Une expertise locale.<br />Un accompagnement à la hauteur de vos exigences.</p>
           <a href="#listings" className={styles.discover}>Explorer nos biens <span aria-hidden="true">↗</span></a>
         </div>
+        <div className={styles.approvalBadge}>
+          <span className={styles.approvalIcon} aria-hidden="true">✓</span>
+          <span>Agence immobilière</span>
+          <strong>Agréée par l’État</strong>
+        </div>
         <div className={styles.bottom}>
           <div className={styles.caption}><span>{slides[active].category}</span><p>{slides[active].caption}</p></div>
           <div className={styles.controls}>
