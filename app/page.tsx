@@ -8,8 +8,10 @@ import Testimonials from "./Testimonials";
 import Location from "./Location";
 import Contact from "./Contact";
 import Footer from "./Footer";
+import ScrollReveal from "./ScrollReveal";
 
 export default function Home(){return <main>
+  <ScrollReveal/>
   <Hero/>
   <About/>
   <Listings/>
