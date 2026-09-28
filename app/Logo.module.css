@@ -1,0 +1,26 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+
+.image {
+  display: block;
+  width: 132px;
+  height: auto;
+}
+
+.large .image {
+  width: 190px;
+  filter: grayscale(1) brightness(0) invert(1);
+}
+
+@media (max-width: 800px) {
+  .image {
+    width: 112px;
+  }
+
+  .large .image {
+    width: 165px;
+  }
+}
