@@ -73,8 +73,8 @@ export default function Navigation() {
           <div className={styles.details}><p className={styles.eyebrow}>Explorer {category.label.toLowerCase()}</p><h2>{category.heading}</h2><ol>{category.links.map(([label, href], linkIndex) => <li key={label}><a href={href} onClick={close}><i>0{linkIndex + 1}</i><span>{label}</span><ArrowUpRight className={styles.arrow} aria-hidden="true" /></a></li>)}</ol><p className={styles.note}>Des lieux de caractère, une équipe à votre écoute.</p></div>
         </div>}
       </div>)}
-      <Button render={<a href="#contact" onClick={close} />} variant="ghost" className={styles.mobileContact}>Parlons de votre projet <ArrowUpRight /></Button>
+      <Button render={<a href="#contact" onClick={close} />} variant="brand" size="xl" className={styles.mobileContact}>Contacter <ArrowUpRight data-icon="inline-end" /></Button>
     </nav>
-    <Button render={<a href="#contact" onClick={close} />} variant="ghost" className={styles.contact}>Parlons de votre projet <ArrowUpRight data-icon="inline-end" /></Button>
+    <Button render={<a href="#contact" onClick={close} />} variant="brand" size="xl" className={styles.contact}>Contacter <ArrowUpRight data-icon="inline-end" /></Button>
   </header>;
 }
